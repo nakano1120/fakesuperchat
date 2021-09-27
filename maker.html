@@ -45,11 +45,16 @@
             background-color: #D00000;
             color: #ffffff;
         }
-        #usertext{
+        #textarea {
             font-size:105%;
             border: 0px;
             background-color: #E62017;
             color: #ffffff;
+            border:0px;
+            resize: none;
+            line-height: 1.5;
+            width: 100%;
+            padding: 10;
         }
         .fade{
             animation: fadeIn 3s 1 normal;
@@ -71,10 +76,32 @@
             <span id="super_money">¥<input type="number" id="money" class="kane" value="10000" onchange="changecolor()"></span>
         </div>
         <div id="text" class="fade">
-            <input type="text" id="usertext" value="こんにちは">
+            <textarea id="textarea" value="こんにちは" rows='1' oninput="resizeTextarea()"></textarea>
         </div>
     </div>
     <script>
+        window.onload = function() {
+            //- 改行に合わせてテキストエリアのサイズ変更
+            this.resizeTextarea = () => {
+
+            // textarea要素のpaddingのY軸(高さ)
+            const PADDING_Y = 20;
+            
+            // textarea要素
+            const $textarea = document.getElementById("textarea");
+            
+            // textareaそ要素のlineheight
+            let lineHeight = getComputedStyle($textarea).lineHeight;
+            // "19.6px" のようなピクセル値が返ってくるので、数字だけにする
+            lineHeight = lineHeight.replace(/[^-\d\.]/g, '');
+
+            // textarea要素に入力された値の行数
+            const lines = ($textarea.value + '\n').match(/\n/g).length;
+
+            // 高さを再計算
+            $textarea.style.height = lineHeight * lines + PADDING_Y + 'px';
+            };
+        };
         function changecolor(){
             supermoney=document.getElementsByClassName("kane")[0].value
             if(supermoney>9999){
@@ -85,8 +112,8 @@
                 document.getElementById("username").style.color="#ffffff"
                 document.getElementById("money").style.backgroundColor="#D00000"
                 document.getElementById("money").style.color="#ffffff"
-                document.getElementById("usertext").style.backgroundColor="#E62017"
-                document.getElementById("usertext").style.color="#ffffff"
+                document.getElementById("textarea").style.backgroundColor="#E62017"
+                document.getElementById("textarea").style.color="#ffffff"
             }else if(supermoney>4999){
                 document.getElementById("name").style.backgroundColor="#C2175B"
                 document.getElementById("text").style.backgroundColor="#E71E62"
@@ -95,8 +122,8 @@
                 document.getElementById("username").style.color="#ffffff"
                 document.getElementById("money").style.backgroundColor="#C2175B"
                 document.getElementById("money").style.color="#ffffff"
-                document.getElementById("usertext").style.backgroundColor="#E71E62"
-                document.getElementById("usertext").style.color="#ffffff"
+                document.getElementById("textarea").style.backgroundColor="#E71E62"
+                document.getElementById("textarea").style.color="#ffffff"
             }else if(supermoney>1999){
                 document.getElementById("name").style.backgroundColor="#E55202"
                 document.getElementById("text").style.backgroundColor="#F47C01"
@@ -105,8 +132,8 @@
                 document.getElementById("username").style.color="#ffffff"
                 document.getElementById("money").style.backgroundColor="#E55202"
                 document.getElementById("money").style.color="#ffffff"
-                document.getElementById("usertext").style.backgroundColor="#F47C01"
-                document.getElementById("usertext").style.color="#ffffff"
+                document.getElementById("textarea").style.backgroundColor="#F47C01"
+                document.getElementById("textarea").style.color="#ffffff"
             }else if(supermoney>999){
                 document.getElementById("name").style.backgroundColor="#FDB200"
                 document.getElementById("text").style.backgroundColor="#FEC827"
@@ -115,8 +142,8 @@
                 document.getElementById("username").style.color="#000000"
                 document.getElementById("money").style.backgroundColor="#FDB200"
                 document.getElementById("money").style.color="#000000"
-                document.getElementById("usertext").style.backgroundColor="#FEC827"
-                document.getElementById("usertext").style.color="#000000"
+                document.getElementById("textarea").style.backgroundColor="#FEC827"
+                document.getElementById("textarea").style.color="#000000"
             }else if(supermoney>499){
                 document.getElementById("name").style.backgroundColor="#02BEA6"
                 document.getElementById("text").style.backgroundColor="#19EAB3"
@@ -125,8 +152,8 @@
                 document.getElementById("username").style.color="#000000"
                 document.getElementById("money").style.backgroundColor="#02BEA6"
                 document.getElementById("money").style.color="#000000"
-                document.getElementById("usertext").style.backgroundColor="#19EAB3"
-                document.getElementById("usertext").style.color="#000000"
+                document.getElementById("textarea").style.backgroundColor="#19EAB3"
+                document.getElementById("textarea").style.color="#000000"
             }else{
                 document.getElementById("name").style.backgroundColor="#00B8D4"
                 document.getElementById("text").style.backgroundColor="#00E5FF"
@@ -135,8 +162,8 @@
                 document.getElementById("username").style.color="#000000"
                 document.getElementById("money").style.backgroundColor="#00B8D4"
                 document.getElementById("money").style.color="#000000"
-                document.getElementById("usertext").style.backgroundColor="#00E5FF"
-                document.getElementById("usertext").style.color="#000000"
+                document.getElementById("textarea").style.backgroundColor="#00E5FF"
+                document.getElementById("textarea").style.color="#000000"
             }
         }
     </script>
