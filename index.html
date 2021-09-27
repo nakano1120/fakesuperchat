@@ -32,7 +32,7 @@
             height:40px;
         }
         .fade{
-            animation: fadeIn 4s 1 normal;
+            animation: fadeIn 3s 1 normal;
         }
         @keyframes fadeIn { /*animation-nameで設定した値を書く*/
 
@@ -46,13 +46,49 @@
 <body>
     <div id="main">
         <div id="name" class="fade">
-            <span id="super_icon"><img id="icon" src="icon1.png"></span>
-            <span id="super_name">なかの</span><br>
+            <span id="super_icon"><img id="icon" src="icon2.png"></span>
+            <span id="super_name">なかのう</span><br>
             <span id="super_money">¥10000</span>
         </div>
         <div id="text" class="fade">
             こんにちは
         </div>
     </div>
+    <script>
+        let supername=["横浜の主人","渋谷まま","睡眠太郎","月刊マイルドスポーツ","たこやきさん四郎","BOR","Mr.takataka"]
+        window.onload = superchat()
+        function superchat() {
+            let superrandname = Math.floor(Math.random() * supername.length)
+            document.getElementById("super_name").innerText=supername[superrandname]
+            let supermoney = (Math.floor(Math.random() * 118)+2)*100
+            document.getElementById("super_money").innerText="¥"+supermoney
+            if(supermoney>9999){
+                document.getElementById("name").style.backgroundColor="#D00000"
+                document.getElementById("text").style.backgroundColor="#E62017"
+                document.getElementById("main").style.color="#ffffff"
+            }else if(supermoney>4999){
+                document.getElementById("name").style.backgroundColor="#C2175B"
+                document.getElementById("text").style.backgroundColor="#E71E62"
+                document.getElementById("main").style.color="#ffffff"
+            }else if(supermoney>1999){
+                document.getElementById("name").style.backgroundColor="#E55202"
+                document.getElementById("text").style.backgroundColor="#F47C01"
+                document.getElementById("main").style.color="#ffffff"
+            }else if(supermoney>999){
+                document.getElementById("name").style.backgroundColor="#FDB200"
+                document.getElementById("text").style.backgroundColor="#FEC827"
+                document.getElementById("main").style.color="#000000"
+            }else if(supermoney>499){
+                document.getElementById("name").style.backgroundColor="#02BEA6"
+                document.getElementById("text").style.backgroundColor="#19EAB3"
+                document.getElementById("main").style.color="#000000"
+            }else{
+                document.getElementById("name").style.backgroundColor="#00B8D4"
+                document.getElementById("text").style.backgroundColor="#00E5FF"
+                document.getElementById("main").style.color="#000000"
+            }
+            setTimeout("location.reload()",20000)
+        };
+    </script>
 </body>
 </html>
