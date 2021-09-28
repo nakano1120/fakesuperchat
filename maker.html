@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>スパチャ</title>
+    <title>スパチャメーカー</title>
     <style>
         input[type="number"]::-webkit-outer-spin-button, 
         input[type="number"]::-webkit-inner-spin-button { 
@@ -79,6 +79,9 @@
             <textarea id="textarea" value="こんにちは" rows='1' oninput="resizeTextarea()"></textarea>
         </div>
     </div>
+    <input type="button" onclick="getimage()" value="完成！">
+    <img src="" id="result">
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"></script>
     <script>
         window.onload = function() {
             //- 改行に合わせてテキストエリアのサイズ変更
@@ -165,6 +168,16 @@
                 document.getElementById("textarea").style.backgroundColor="#00E5FF"
                 document.getElementById("textarea").style.color="#000000"
             }
+        }
+        function getimage(){
+            //HTML内に画像を表示
+            html2canvas(document.getElementById("main"),{
+                onrendered: function(canvas){
+                    //imgタグのsrcの中に、html2canvasがレンダリングした画像を指定する。
+                    var imgData = canvas.toDataURL();
+                    document.getElementById("result").src = imgData;
+                }
+            });
         }
     </script>
 </body>
