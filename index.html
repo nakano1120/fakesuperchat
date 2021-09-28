@@ -23,6 +23,7 @@
             padding:10px;
             background-color: #E62017;
             border-radius: 0 0 10px 10px;
+            overflow-wrap: break-word;
         }
         #icon{
             padding:5px 10px;
@@ -55,11 +56,13 @@
         </div>
     </div>
     <script>
-        let supername=["横浜の主人","渋谷まま","睡眠太郎","月刊マイルドスポーツ","たこやきさん四郎","BOR","Mr.takataka"]
-        window.onload = superchat()
+        let supername=["横浜の主人","渋谷まま","睡眠太郎","月刊マイルドスポーツ","たこやきさん四郎","BOR","Mr.takataka","たけろう","インクレディ","深紅の電話","ひづめりゅう","ジャスティン","フィーバーソングライター"]
+        let question=["こんにちは！","頑張って下さい！応援してます！","うp乙です！","好きな食べ物はナンですか？","行きたい海外の場所は？","私は誰ですか？","これはペンですか？","山手線の運行状況を教えてください！","ラーメン食べたくなってきた。訴訟","小麦粉はパンの原材料とよく言いますが、本当でしょうか？"]
         function superchat() {
             let superrandname = Math.floor(Math.random() * supername.length)
             document.getElementById("super_name").innerText=supername[superrandname]
+            let superquestion = Math.floor(Math.random() * question.length)
+            document.getElementById("text").innerHTML=question[superquestion]
             let supermoney = (Math.floor(Math.random() * 118)+2)*100
             document.getElementById("super_money").innerText="¥"+supermoney
             if(supermoney>9999){
