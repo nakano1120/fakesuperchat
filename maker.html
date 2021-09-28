@@ -32,8 +32,10 @@
             background-color: #E62017;
             border-radius: 0 0 10px 10px;
         }
-        #icon{
-            padding:5px 10px;
+        #super_icon{
+            background-color:#aaffff;
+            border:1px solid #333333;
+            margin:5px 5px;
             float:left;
             border-radius: 50%;
             width:40px;
@@ -71,7 +73,7 @@
 <body>
     <div id="main">
         <div id="name" class="fade">
-            <span id="super_icon"><img id="icon" src="icon2.png"></span>
+            <span id="super_icon">　</span>
             <span id="super_name"><input type="text" id="username" value="なかの"></span><br>
             <span id="super_money">¥<input type="number" id="money" class="kane" value="10000" onchange="changecolor()"></span>
         </div>
@@ -79,9 +81,6 @@
             <textarea id="textarea" value="こんにちは" rows='1' oninput="resizeTextarea()"></textarea>
         </div>
     </div>
-    <input type="button" onclick="getimage()" value="完成！">
-    <img src="" id="result">
-    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"></script>
     <script>
         window.onload = function() {
             //- 改行に合わせてテキストエリアのサイズ変更
@@ -168,16 +167,6 @@
                 document.getElementById("textarea").style.backgroundColor="#00E5FF"
                 document.getElementById("textarea").style.color="#000000"
             }
-        }
-        function getimage(){
-            //HTML内に画像を表示
-            html2canvas(document.getElementById("main"),{
-                onrendered: function(canvas){
-                    //imgタグのsrcの中に、html2canvasがレンダリングした画像を指定する。
-                    var imgData = canvas.toDataURL();
-                    document.getElementById("result").src = imgData;
-                }
-            });
         }
     </script>
 </body>
