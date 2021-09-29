@@ -64,7 +64,7 @@
             let superquestion = Math.floor(Math.random() * question.length)
             document.getElementById("text").innerText=question[superquestion]
             let supermoney = (Math.floor(Math.random() * 118)+2)*100
-            document.getElementById("super_money").innerText="¥"+supermoney
+            document.getElementById("super_money").innerText=supermoney
             let queries=getUrlQueries();
             if(typeof queries["name"] !== 'undefined'){
                 document.getElementById("super_name").innerText=queries["name"]
