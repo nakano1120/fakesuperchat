@@ -48,7 +48,7 @@
         <div id="name" class="fade">
             <span id="super_icon"><img id="icon" src="icon2.png"></span>
             <span id="super_name">なかのう</span><br>
-            <span id="super_money">¥10000</span>
+            <span>¥<span id="super_money">10000</span></span>
         </div>
         <div id="text" class="fade">
             こんにちは
@@ -65,6 +65,17 @@
             document.getElementById("text").innerText=question[superquestion]
             let supermoney = (Math.floor(Math.random() * 118)+2)*100
             document.getElementById("super_money").innerText="¥"+supermoney
+            let queries=getUrlQueries();
+            if(typeof queries["name"] !== 'undefined'){
+                document.getElementById("super_name").innerText=queries["name"]
+            }
+            if(typeof queries["money"] !== 'undefined'){
+                document.getElementById("super_money").innerText=queries["money"]
+                supermoney=parseInt(queries["money"])
+            }
+            if(typeof queries["text"] !== 'undefined'){
+                document.getElementById("text").innerText=queries["text"]
+            }
             if(supermoney>9999){
                 document.getElementById("name").style.backgroundColor="#D00000"
                 document.getElementById("text").style.backgroundColor="#E62017"
@@ -90,8 +101,26 @@
                 document.getElementById("text").style.backgroundColor="#00E5FF"
                 document.getElementById("main").style.color="#000000"
             }
-            setTimeout("location.reload()",20000)
+            setTimeout("location.reload()",30000)
         };
+        function getUrlQueries() {
+            var queryStr = window.location.search.slice(1);  // 文頭?を除外
+                queries = {};
+            queryStr = decodeURI(queryStr)
+            // クエリがない場合は空のオブジェクトを返す
+            if (!queryStr) {
+                return queries;
+            }
+
+            // クエリ文字列を & で分割して処理
+            queryStr.split('&').forEach(function(queryStr) {
+                // = で分割してkey,valueをオブジェクトに格納
+                var queryArr = queryStr.split('=');
+                queries[queryArr[0]] = queryArr[1];
+            });
+
+            return queries;
+        }
     </script>
 </body>
 </html>
